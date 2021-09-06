@@ -1,4 +1,4 @@
 print("hey")
 print("coolt")
-print("tjaaa")
-print("test")
+print("hellooo")
+print("test 123")
