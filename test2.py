@@ -3,7 +3,7 @@ name= input()
 
 
 for i in name:
-    print(f"Hej {i}")
+    print(f"Hejjjjjjjj {i}")
 
 
 
