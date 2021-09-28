@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 def on_connect(client, userdata, flags, rc):
 # Subscribing in on_connect() means that
 # reconnect will renew then subscriptions
-    client.subscribe("yrgo/hispi/iksa/#", qos=1)
+    client.subscribe("yrgo/hispi/iksa/hh", qos=1)
 # The callback for receiving message
 def on_message(client, userdata, msg):
     print(f"message: {msg.payload}")
@@ -11,7 +11,7 @@ def on_message(client, userdata, msg):
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
-client.connect("broker.hivemq.com", port=1883, keepalive=60)
+client.connect("192.168.137.1", port=1883, keepalive=60)
 # Blocking call that processes network traffic, dispatches
 # callbacks and handles reconnecting.
 client.loop_forever()
