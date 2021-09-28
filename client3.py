@@ -16,7 +16,7 @@ client = mqtt.Client()
 client.on_connect = on_connect
 
 # Connect to a broker
-client.connect("192.168.43.55", port=1883, keepalive=60)
+client.connect("192.168.137.1", port=1883, keepalive=60)
 
 # Start a background loop that handles all
 # communication with the MQTT broker
