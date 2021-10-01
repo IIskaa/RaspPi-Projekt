@@ -56,7 +56,7 @@ while True:
     print(temp)
     print(str(temp))
 
-    data = struct.pack("!bq", id, temp)
+    data = struct.pack("!QIBiB", id, temp)
 
     # publish the data to the topic some/topic
     # using the packed struct as payload and
