@@ -1,3 +1,4 @@
+import struct
 import paho.mqtt.client as mqtt
 import struct
 # The callback for when the client connects to the server
