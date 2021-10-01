@@ -1,3 +1,4 @@
+import struct
 import paho.mqtt.client as mqtt
 # The callback for when the client connects to the server
 def on_connect(client, userdata, flags, rc):
