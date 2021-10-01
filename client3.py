@@ -4,7 +4,7 @@ import struct
 import os
 import glob
 import time
-
+import datetime
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -47,6 +47,7 @@ def temp_c():
         temp_c = int(temp_string)
         return temp_c
 
+timenow = datetime.datetime.now()
 
 # send a random value every second
 while True:
@@ -56,7 +57,7 @@ while True:
     print(temp)
     print(str(temp))
 
-    data = struct.pack("!QIBiB", id, temp)
+    data = struct.pack("!QIBiB", id, timenow, temp)
 
     # publish the data to the topic some/topic
     # using the packed struct as payload and
