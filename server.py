@@ -7,7 +7,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("yrgo/hispi/iksa/hh", qos=1)
 # The callback for receiving message
 def on_message(client, userdata, msg):
-    id, temp = struct.unpack("!bq", msg.payload)
+    id, temp = struct.unpack("!QIB", msg.payload)
     print(f"message: {id}, {temp}")
 # Create a MQTT client with callbacks
 client = mqtt.Client()
