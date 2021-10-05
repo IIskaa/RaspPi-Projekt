@@ -10,14 +10,15 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe("yrgo/hispi/iksa/hh", qos=1)
 # The callback for receiving message
 def on_message(client, userdata, msg):
-    id, timestamp, index, temp = struct.unpack("!QIBi", msg.payload)
+    id, timestamp, index, temp, enhet = struct.unpack("!QIBiB", msg.payload)
     time = datetime.fromtimestamp(timestamp)
-    print(f"message: {id}, {temp}, {index}, {time})")
+    enhet = enhet + 55
+    print(f"message: {id}, {time}, {index}, {temp} {chr(enhet)})")
 # Create a MQTT client with callbacks
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
-client.connect("192.168.137.1", port=1883, keepalive=60)
+client.connect("172.20.10.5", port=1883, keepalive=60)
 # Blocking call that processes network traffic, dispatches
 # callbacks and handles reconnecting.
 
