@@ -40,9 +40,6 @@ def temp_c():
         temp_c = int(temp_string)
         return temp_c
 
-
-
-
 while True:
 
     time.sleep(1)
