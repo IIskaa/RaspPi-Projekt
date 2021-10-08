@@ -48,11 +48,13 @@ while True:
     time.sleep(1)
     id = 3
     index = 0
-    temp = temp_c()
+    enhet = "C"
+    enhet= int(enhet, 16)
     timestamp = int(datetime.datetime.now().timestamp())   
+    temp = temp_c()
     print(temp)
     print(str(temp))
 
-    data = struct.pack("!QIBiB", id, timestamp, index, temp)
+    data = struct.pack("!QIBiB", id, timestamp, index, temp, enhet)
 
     client.publish("yrgo/hispi/iksa/hh", payload=data, qos=1)
