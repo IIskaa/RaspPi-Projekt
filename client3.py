@@ -33,7 +33,7 @@ def read_temp_raw():
     with open(device_file, "r") as temp_read_file:
         return temp_read_file.readlines()
 
-def temp_c():
+def read_temp():
     lines = read_temp_raw()
     while lines[0].strip()[-3:] != 'YES':
         time.sleep(1)
@@ -41,7 +41,7 @@ def temp_c():
     equals_pos = lines[1].find('t=')
     if equals_pos != -1:
         temp_string = lines[1][equals_pos+2:]
-        temp_c = int(temp_string)
+        temp_c = temp_string
         return temp_c
 
 while True:
@@ -51,7 +51,7 @@ while True:
     enhet = "C"
     enhet= int(enhet, 16)
     timestamp = int(datetime.datetime.now().timestamp())   
-    temp = temp_c()
+    temp = int(read_temp(), 16)
     print(temp)
     print(str(temp))
 

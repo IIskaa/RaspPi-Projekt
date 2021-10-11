@@ -51,6 +51,7 @@ def get_measurements(meter, channel):
             time = data[1]
             temp = data[3]
             enhet = data[4]
+            temp = float(temp)
             temp = temp/1000
             if meter == data[0] and channel == data[2]: 
                 temp_list.add((time, temp, enhet))

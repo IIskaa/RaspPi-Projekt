@@ -20,7 +20,7 @@ def on_message(client, userdata, msg):
     with open(text_add, "a") as file:
             #file.write(f"{var1}\n")
             #file.write(f"{a:x} {b:x} {c:x} {d:x} {e:x}\n")
-            file.write(f"{id:x};{time:x};{index:x};{temp:x};{chr(enhet)}\n")
+            file.write(f"{id:x};{time};{index:x};{temp:x};{chr(enhet)}\n")
 
 # Create a MQTT client with callbacks
 client = mqtt.Client()
