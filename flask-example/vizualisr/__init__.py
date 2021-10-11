@@ -1,6 +1,7 @@
 from flask import Flask, render_template, flash
 import datetime
 
+text_add= "D:/Yrgo/Ela20/Hårdvarunära Programering/GruppProjekt/RaspPi-Projekt/flask-example/vizualisr/temptext.txt"
 # This creates the flask application and configures it
 # flask run will use this to start the application properly
 app = Flask(__name__)
@@ -15,37 +16,45 @@ UNITS = {
     1: "RH"
 }
 
+
 # This is a placeholder that returns a fixed set of meters
 # in a proper system this would look in a database or in
 # the file system for a list of meters in the system
+def get_id_data():
+    id_list=set()
+    with open(text_add,"r") as file:
+        for line in file:
+            data = line.split(";")
+            id = data[0]
+            index = data[2]
+            id_list.add((id, index))
+    return list(id_list)
+
+# [  (12233, 0), (12233, 1), (3434434, 0)]
+
 def get_meters():
-    meters = [ ("1234", 0),
-               ("1234", 1),
-               ("1235", 0),
-               ("1236", 0)]
-    return meters
+    list_of_sensors = get_id_data()
+    return list_of_sensors
+
 
 # This is a placeholder that returns a fixed set of 
 # measurement data. In a proper system this would read
 # the data from a database or the file system
 def get_measurements(meter, channel):
-    if (meter, int(channel)) not in get_meters():
-        # the function flash() is part of the flask system and lets us
-        # register error/warning messages that should be shown on the
-        # web page.
-        flash(f"The meter {meter} with channel {channel} does not exist.")
-        return []
 
     # this just generates a fixed set of measurement values
     # to have something to show...
-    measurements = []
-    time = 1624537020
-    for _ in range(20):
-        date = datetime.datetime.fromtimestamp(time)
-        value = time % 27
-        measurements.append((date, value, UNITS[0]))
-        time = time - 10 * 60
-    return measurements
+    temp_list = set()
+    with open(text_add, "r") as file:
+        for line in file:
+            data = line.split(";")
+            time = data[1]
+            temp = data[3]
+            enhet = data[4]
+            temp = temp/1000
+            if meter == data[0] and channel == data[2]: 
+                temp_list.add((time, temp, enhet))
+    return list(temp_list)
 
 # @app.route registers a handler for a specific URL
 # in this case the URL / (i.e. the root of the server)

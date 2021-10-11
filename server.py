@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 import struct
 from datetime import datetime
 
-textPath = "D:/Yrgo/Ela20/Hårdvarunära Programering/GruppProjekt/RaspPi-Projekt/temptext.txt"
+text_add = "D:/Yrgo/Ela20/Hårdvarunära Programering/GruppProjekt/RaspPi-Projekt/flask-example/vizualisr/temptext.txt"
 
 # The callback for when the client connects to the server
 def on_connect(client, userdata, flags, rc):
@@ -15,12 +15,12 @@ def on_message(client, userdata, msg):
     id, timestamp, index, temp, enhet = struct.unpack("!QIBiB", msg.payload)
     time = datetime.fromtimestamp(timestamp)
     enhet = enhet + 55
-    print(f"message: {id}, {time}, {index}, {temp} {chr(enhet)})")
+    print(f"message: {id};{time};{index};{temp};{chr(enhet)})")
 
-    with open(textPath, "a") as file:
+    with open(text_add, "a") as file:
             #file.write(f"{var1}\n")
             #file.write(f"{a:x} {b:x} {c:x} {d:x} {e:x}\n")
-            file.write(f"{id:x} {time:x} {index:x} {temp:x} {chr(enhet)}\n")
+            file.write(f"{id:x};{time:x};{index:x};{temp:x};{chr(enhet)}\n")
 
 # Create a MQTT client with callbacks
 client = mqtt.Client()
